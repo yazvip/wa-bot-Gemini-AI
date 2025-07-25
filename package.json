@@ -30,6 +30,7 @@
     "express": "^5.1.0",
     "qrcode-terminal": "*",
     "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7",
     "whatsapp-web.js": "*"
   }
 }

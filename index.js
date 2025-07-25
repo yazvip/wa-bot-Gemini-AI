@@ -5,11 +5,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const replies = require('./replies');
 const emeteraiPromptTemplate = require('./prompt_template');
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GREETING_IMAGE_URL = process.env.GREETING_IMAGE_URL;
 const PAYMENT_IMAGE_URL = process.env.PAYMENT_IMAGE_URL;
-
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 const userStates = {};
 
@@ -24,8 +21,20 @@ async function getCurrentTime() {
   }
 }
 
-async function getGeminiResponse(userQuestion) {
+async function getGeminiResponse(userQuestion, db) {
   try {
+    const geminiApiKey = await new Promise((resolve, reject) => {
+      db.get('SELECT value FROM settings WHERE key = ?', ['gemini_api_key'], (err, row) => {
+        if (err) reject(err);
+        resolve(row ? row.value : process.env.GEMINI_API_KEY);
+      });
+    });
+
+    if (!geminiApiKey) {
+      return 'Gemini API key is not set.';
+    }
+
+    const genAI = new GoogleGenerativeAI(geminiApiKey);
     const currentTime = await getCurrentTime();
     const fullPrompt = emeteraiPromptTemplate.replace('{user_question}', userQuestion).replace('{current_time}', currentTime);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
@@ -37,7 +46,7 @@ async function getGeminiResponse(userQuestion) {
   }
 }
 
-function initializeWhatsAppClient(io) {
+function initializeWhatsAppClient(io, db) {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: { args: ['--no-sandbox'] }
@@ -59,6 +68,7 @@ function initializeWhatsAppClient(io) {
     const text = message.body.toLowerCase();
     const userId = message.from;
 
+    db.run('INSERT INTO messages (from_user, to_user, body) VALUES (?, ?, ?)', [userId, message.to, message.body]);
     io.emit('log', `Message from ${userId}: ${text}`);
 
     if (!userStates[userId]) userStates[userId] = { active: true };
@@ -98,7 +108,7 @@ function initializeWhatsAppClient(io) {
       return client.sendMessage(userId, replies.options);
     }
 
-    const aiResponse = await getGeminiResponse(message.body);
+    const aiResponse = await getGeminiResponse(message.body, db);
     if (aiResponse && aiResponse.length > 10) {
       await client.sendMessage(userId, aiResponse);
     } else {

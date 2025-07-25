@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Admin Panel</h1>
+    </header>
+    <nav>
+      <a href="#" id="dashboard-link" class="active">Dashboard</a>
+      <a href="#" id="messages-link">Messages</a>
+      <a href="#" id="settings-link">Settings</a>
+    </nav>
+    <main>
+      <div id="dashboard" class="page active">
+        <h2>Dashboard</h2>
+        <p>Welcome to the admin panel.</p>
+      </div>
+      <div id="messages" class="page">
+        <h2>Message History</h2>
+        <ul id="message-list"></ul>
+      </div>
+      <div id="settings" class="page">
+        <h2>Settings</h2>
+        <form id="settings-form">
+          <label for="gemini-api-key">Gemini API Key</label>
+          <input type="text" id="gemini-api-key" name="gemini_api_key">
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -14,33 +14,27 @@ This is a **WhatsApp chatbot** that integrates **Google Gemini AI**, **whatsapp-
 
 ---
 
-## 🛠️ Installation (VPS)
+## 🛠️ Installation (Shared Hosting with cPanel)
 
-### 1️⃣ **Clone the Repository**  
-```bash
-git clone https://github.com/wimboro/wa-bot-Gemini-AI.git
-cd wa-bot-Gemini-AI
-```
+### 1️⃣ **Upload Files**
+Upload the project files to your hosting account.
 
-### 2️⃣ **Run the Installation Script**
-Make the script executable and run it:
-```bash
-chmod +x install.sh
-./install.sh
-```
+### 2️⃣ **Run Installation Check**
+Navigate to `install.php` in your browser (e.g., `https://yourdomain.com/install.php`). This script will check if Node.js is accessible.
 
-### 3️⃣ **Configure the Application**
-Start the server:
-```bash
-npm start
-```
-Open your web browser and go to `http://<your-vps-ip>:3000`. You will be redirected to the installation page. Enter your API keys and image URLs and save the configuration.
+### 3️⃣ **Set up Node.js Application in cPanel**
+1.  In cPanel, find and open "Setup Node.js App".
+2.  Create a new application, setting the application root to your project's directory.
+3.  Set the application startup file to `server.js`.
+4.  Install dependencies by running `npm install`.
+5.  Start the application.
 
-### 4️⃣ **Start the Application with PM2**
-After saving the configuration, restart the application using PM2 to keep it running in the background:
-```bash
-pm2 start npm --name "wa-bot" -- start
-```
+### 4️⃣ **Configure the Application**
+-   Access your application's URL. You will be redirected to a page to enter your API keys and image URLs.
+-   Save the configuration. The application will restart.
+
+### 5️⃣ **Access the Admin Panel**
+Navigate to `/admin` on your domain (e.g., `https://yourdomain.com/admin`) to view the admin panel.
 
 ### 4️⃣ **Configure `replies.js`**  
 Edit `replies.js` to customize bot responses:  
