@@ -75,9 +75,10 @@ module.exports = emeteraiPromptTemplate;
 
 ### 6️⃣ **Run the Bot**  
 ```bash
-node index.js
+npm start
 ```
-Scan the QR code displayed in the terminal to authenticate your WhatsApp.  
+Open your web browser and go to `http://localhost:3000`.
+Scan the QR code that appears on the web page with your WhatsApp mobile app.
 
 ---
 
