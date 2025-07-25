@@ -1,147 +1,109 @@
-## 📲 WhatsApp Chatbot with Gemini AI & Time API  
+# 📲 Chatbot WhatsApp dengan Gemini AI & Time API
 
-This is a **WhatsApp chatbot** that integrates **Google Gemini AI**, **whatsapp-web.js**, and **timeapi.io** to provide intelligent responses, handle customer inquiries, and display real-time Jakarta time.  
-
----
-
-## 🚀 Features  
-
-✅ **AI-Powered Responses** – Uses **Google Gemini AI** for smart replies.  
-✅ **WhatsApp Automation** – Built with **whatsapp-web.js**.  
-✅ **Real-Time Time API** – Fetches **current time in Jakarta (GMT+7)** from **timeapi.io**.  
-✅ **Automated Customer Support** – Handles FAQs, greetings, and payments.  
-✅ **Dynamic Image URLs** – Stores greeting and payment image URLs in **.env**.
+Ini adalah **chatbot WhatsApp** yang mengintegrasikan **Google Gemini AI**, **whatsapp-web.js**, dan **timeapi.io** untuk memberikan respons cerdas, menangani pertanyaan pelanggan, dan menampilkan waktu Jakarta secara real-time.
 
 ---
 
-## 🛠️ Installation (Shared Hosting with cPanel)
+## 🚀 Fitur
 
-### 1️⃣ **Upload Files**
-Upload the project files to your hosting account.
-
-### 2️⃣ **Run Installation Check**
-Navigate to `install.php` in your browser (e.g., `https://yourdomain.com/install.php`). This script will check if Node.js is accessible.
-
-### 3️⃣ **Set up Node.js Application in cPanel**
-1.  In cPanel, find and open "Setup Node.js App".
-2.  Create a new application, setting the application root to your project's directory.
-3.  Set the application startup file to `server.js`.
-4.  Install dependencies by running `npm install`.
-5.  Start the application.
-
-### 4️⃣ **Configure the Application**
--   Access your application's URL. You will be redirected to a page to enter your API keys and image URLs.
--   Save the configuration. The application will restart.
-
-### 5️⃣ **Access the Admin Panel**
-Navigate to `/admin` on your domain (e.g., `https://yourdomain.com/admin`) to view the admin panel.
-
-### 4️⃣ **Configure `replies.js`**  
-Edit `replies.js` to customize bot responses:  
-
-```javascript
-module.exports = {
-  greetingsCaption: "Your custom greeting caption here.",
-  paymentCaption: ""
-  },
-  stopMessage: "Bot berhenti. Ketik \"lanjut\" untuk melanjutkan.",
-  continueMessage: "Bot telah dilanjutkan. Bagaimana saya bisa membantu Anda?",
-  continuePrompt: "Anda terhubung dengan asisten otomatis. Ketik \"stop\" untuk berhenti atau abaikan untuk melanjutkan.",
-  defaultMessage: "Maaf, saya tidak mengerti pertanyaan Anda. Silakan coba lagi atau hubungi customer service kami.",
-  optionResponses: {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: ""
-  }
-};
-```
-
-### 5️⃣ **Customize `prompt_template.js`**  
-Edit `prompt_template.js` to customize AI prompt behavior:  
-
-```javascript
-const emeteraiPromptTemplate = `
-
-Current Date & Time: {current_time}
-
-User question: {user_question}
-
-Your response:
-`;
-
-module.exports = emeteraiPromptTemplate;
-```
-
-### 6️⃣ **Run the Bot**  
-```bash
-npm start
-```
-Open your web browser and go to `http://localhost:3000`.
-Scan the QR code that appears on the web page with your WhatsApp mobile app.
+✅ **Respons Berbasis AI** – Menggunakan **Google Gemini AI** untuk balasan cerdas.
+✅ **Otomatisasi WhatsApp** – Dibangun dengan **whatsapp-web.js**.
+✅ **API Waktu Real-Time** – Mengambil **waktu saat ini di Jakarta (GMT+7)** dari **timeapi.io**.
+✅ **Dukungan Pelanggan Otomatis** – Menangani FAQ, salam, dan pembayaran.
+✅ **URL Gambar Dinamis** – Menyimpan URL gambar salam dan pembayaran di **.env**.
+✅ **Panel Admin** - Panel admin untuk melihat riwayat pesan dan pengaturan.
+✅ **Database SQLite** - Menyimpan riwayat pesan dan pengaturan.
 
 ---
 
-## 📌 Usage  
+## 🛠️ Instalasi (Shared Hosting dengan cPanel)
 
-### 🔹 **Basic Commands**  
-- `halo`, `assalamualaikum`, `selamat` → Sends a greeting with an image.  
-- `pembayaran`, `bayar` → Sends a payment QR code.  
-- `bantuan` → Displays available options.  
-- `stop` → Stops bot responses.  
-- `lanjut` → Resumes bot responses.  
+### 1️⃣ **Unggah File**
+Unggah file proyek ke akun hosting Anda.
 
-### 🔹 **AI-Powered Responses**  
-- The bot uses **Google Gemini AI** to generate responses for general questions about **E-meterai**.  
-- If a user asks for the current time, the bot fetches the **real-time Jakarta time (GMT+7)** from **timeapi.io** and responds accordingly.  
+### 2️⃣ **Jalankan Pemeriksaan Instalasi**
+Buka `install.php` di browser Anda (misalnya, `https://domainanda.com/install.php`). Skrip ini akan memeriksa apakah Node.js dapat diakses.
+
+### 3️⃣ **Siapkan Aplikasi Node.js di cPanel**
+1.  Di cPanel, cari dan buka "Setup Node.js App".
+2.  Buat aplikasi baru, atur direktori utama aplikasi ke direktori proyek Anda.
+3.  Atur file startup aplikasi ke `server.js`.
+4.  Instal dependensi dengan menjalankan `npm install`.
+5.  Mulai aplikasi.
+
+### 4️⃣ **Konfigurasi Aplikasi**
+-   Akses URL aplikasi Anda. Anda akan diarahkan ke halaman untuk memasukkan kunci API dan URL gambar Anda.
+-   Simpan konfigurasi. Aplikasi akan dimulai ulang.
+
+### 5️⃣ **Akses Panel Admin**
+Buka `/admin` di domain Anda (misalnya, `https://domainanda.com/admin`) untuk melihat panel admin.
 
 ---
 
-## 🔧 Project Structure  
+## 📌 Penggunaan
+
+### 🔹 **Perintah Dasar**
+- `halo`, `assalamualaikum`, `selamat` → Mengirim salam dengan gambar.
+- `pembayaran`, `bayar` → Mengirim kode QR pembayaran.
+- `bantuan` → Menampilkan opsi yang tersedia.
+- `stop` → Menghentikan respons bot.
+- `lanjut` → Melanjutkan respons bot.
+
+### 🔹 **Respons Berbasis AI**
+- Bot menggunakan **Google Gemini AI** untuk menghasilkan respons untuk pertanyaan umum tentang **E-meterai**.
+- Jika pengguna bertanya tentang waktu saat ini, bot mengambil **waktu Jakarta (GMT+7) secara real-time** dari **timeapi.io** dan merespons sesuai.
+
+---
+
+## 🔧 Struktur Proyek
 
 ```
 📂 wa-bot-Gemini-AI/
-│── 📜 index.js            # Main bot logic  
-│── 📜 replies.js          # Predefined bot responses  
-│── 📜 prompt_template.js  # AI prompt structure  
-│── 📜 .env                # API keys and configurations  
-│── 📜 package.json        # Node.js dependencies  
-│── 📜 README.md           # Project documentation  
+│── 📜 admin/             # File panel admin
+│── 📜 database.db        # Database SQLite
+│── 📜 index.js           # Logika bot utama
+│── 📜 server.js          # Server web
+│── 📜 replies.js         # Respons bot yang telah ditentukan
+│── 📜 prompt_template.js # Struktur prompt AI
+│── 📜 .env               # Kunci API dan konfigurasi
+│── 📜 package.json       # Dependensi Node.js
+│── 📜 README.md          # Dokumentasi proyek
 ```
 
 ---
 
-## 🔥 Dependencies  
+## 🔥 Dependensi
 
-- [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) – WhatsApp automation  
-- [dotenv](https://www.npmjs.com/package/dotenv) – Manages environment variables  
-- [axios](https://www.npmjs.com/package/axios) – Handles HTTP requests (for **timeapi.io**)  
-- [GoogleGenerativeAI](https://www.npmjs.com/package/@google/generative-ai) – Gemini AI integration  
-- [qrcode-terminal](https://www.npmjs.com/package/qrcode-terminal) – Displays QR code in terminal  
-
----
-
-## 🤝 Contributing  
-
-1. Fork this repository.  
-2. Create a new branch: `git checkout -b feature-branch`.  
-3. Commit changes: `git commit -m "Added a new feature"`.  
-4. Push your branch: `git push origin feature-branch`.  
-5. Open a Pull Request.  
+- [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) – Otomatisasi WhatsApp
+- [dotenv](https://www.npmjs.com/package/dotenv) – Mengelola variabel lingkungan
+- [axios](https://www.npmjs.com/package/axios) – Menangani permintaan HTTP (untuk **timeapi.io**)
+- [GoogleGenerativeAI](https://www.npmjs.com/package/@google/generative-ai) – Integrasi Gemini AI
+- [express](https://www.npmjs.com/package/express) - Kerangka kerja web
+- [socket.io](https://www.npmjs.com/package/socket.io) - Komunikasi real-time
+- [sqlite3](https://www.npmjs.com/package/sqlite3) - Database SQLite
 
 ---
 
-## 📜 License  
+## 🤝 Berkontribusi
 
-This project is licensed under the **MIT License**.  
+1.  Fork repositori ini.
+2.  Buat cabang baru: `git checkout -b fitur-baru`.
+3.  Lakukan perubahan: `git commit -m "Menambahkan fitur baru"`.
+4.  Dorong cabang Anda: `git push origin fitur-baru`.
+5.  Buka Pull Request.
 
 ---
 
-## 📞 Contact  
+## 📜 Lisensi
 
-📧 Email: wgp.pra@gmail.com  
-🐦 Twitter: [@galasaktii](https://twitter.com/galasaktii)  
-📌 GitHub: [wimboro](https://github.com/wimboro)  
+Proyek ini dilisensikan di bawah **Lisensi MIT**.
+
+---
+
+## 📞 Kontak
+
+📧 Email: wgp.pra@gmail.com
+🐦 Twitter: [@galasaktii](https://twitter.com/galasaktii)
+📌 GitHub: [wimboro](https://github.com/wimboro)
 
 ---
