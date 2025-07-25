@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Bot Installation</title>
+  <style>
+    body { font-family: sans-serif; }
+    .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+    input { width: 100%; padding: 10px; margin-bottom: 10px; }
+    button { padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WhatsApp Bot Installation</h1>
+    <form action="/install" method="post">
+      <label for="gemini_api_key">Gemini API Key</label>
+      <input type="text" id="gemini_api_key" name="gemini_api_key" required>
+
+      <label for="greeting_image_url">Greeting Image URL</label>
+      <input type="text" id="greeting_image_url" name="greeting_image_url" required>
+
+      <label for="payment_image_url">Payment Image URL</label>
+      <input type="text" id="payment_image_url" name="payment_image_url" required>
+
+      <button type="submit">Save Configuration</button>
+    </form>
+  </div>
+</body>
+</html>

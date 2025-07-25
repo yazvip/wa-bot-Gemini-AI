@@ -14,7 +14,7 @@ This is a **WhatsApp chatbot** that integrates **Google Gemini AI**, **whatsapp-
 
 ---
 
-## 🛠️ Installation  
+## 🛠️ Installation (VPS)
 
 ### 1️⃣ **Clone the Repository**  
 ```bash
@@ -22,17 +22,24 @@ git clone https://github.com/wimboro/wa-bot-Gemini-AI.git
 cd wa-bot-Gemini-AI
 ```
 
-### 2️⃣ **Install Dependencies**  
+### 2️⃣ **Run the Installation Script**
+Make the script executable and run it:
 ```bash
-npm install
+chmod +x install.sh
+./install.sh
 ```
 
-### 3️⃣ **Setup `.env` File**  
-Create a `.env` file and add:  
-```env
-GEMINI_API_KEY=your_gemini_api_key
-GREETING_IMAGE_URL=https://your-image-url.com/greeting.jpg
-PAYMENT_IMAGE_URL=https://your-image-url.com/payment.jpg
+### 3️⃣ **Configure the Application**
+Start the server:
+```bash
+npm start
+```
+Open your web browser and go to `http://<your-vps-ip>:3000`. You will be redirected to the installation page. Enter your API keys and image URLs and save the configuration.
+
+### 4️⃣ **Start the Application with PM2**
+After saving the configuration, restart the application using PM2 to keep it running in the background:
+```bash
+pm2 start npm --name "wa-bot" -- start
 ```
 
 ### 4️⃣ **Configure `replies.js`**  
