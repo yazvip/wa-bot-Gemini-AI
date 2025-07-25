@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Bot Control Panel</title>
+  <style>
+    body { font-family: sans-serif; }
+    #qr { margin-top: 20px; }
+    #logs { list-style-type: none; padding: 0; }
+    #logs li { margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <h1>WhatsApp Bot Control Panel</h1>
+  <div id="qr"></div>
+  <h2>Logs</h2>
+  <ul id="logs"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script>
+    const socket = io();
+    const qrDiv = document.getElementById('qr');
+    const logsUl = document.getElementById('logs');
+    const qrcode = new QRCode(qrDiv, {
+      width: 256,
+      height: 256,
+    });
+
+    socket.on('qr', (qr) => {
+      console.log('QR code received');
+      qrcode.makeCode(qr);
+    });
+
+    socket.on('log', (log) => {
+      const li = document.createElement('li');
+      li.textContent = log;
+      logsUl.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -20,13 +20,16 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "whatsapp-web.js": "*",
-    "qrcode-terminal": "*",
     "@google/generative-ai": "*",
+    "axios": "*",
     "dotenv": "*",
-    "axios": "*"
+    "express": "^5.1.0",
+    "qrcode-terminal": "*",
+    "socket.io": "^4.8.1",
+    "whatsapp-web.js": "*"
   }
 }
